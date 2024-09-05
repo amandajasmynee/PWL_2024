@@ -96,3 +96,18 @@ Route::resource('photos', PhotoController::class);
 // Nomor 11
 Route::resource('photos', PhotoController::class) ->only(['index','show']);
 Route::resource('photos', PhotoController::class) ->except(['create','store', 'update', 'destroy']);
+
+// JOBSHEET 2 - PRAK 3
+
+// Nomor 2
+// Route::get('/greeting', function() {
+//     return view('hello', ['name' => 'Amanda Jasmyne']);
+// });
+
+// Nomor 6
+// Route::get('/greeting', function() {
+//     return view('blog.hello', ['name' => 'Amanda Jasmyne']);
+// });
+
+// Nomor 9
+Route::get('/greeting', [WelcomeController::class, 'greeting']);
