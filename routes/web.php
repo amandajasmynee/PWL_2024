@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +23,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// JOBSHEET 2 - PRAK 1
+
 // BASIC ROUTING
 // Nomor 2
-Route::get('/hello', function () {
-    return 'Hello World';
-});
+// Route::get('/hello', function () {
+//     return 'Hello World';
+// });
 
 // Nomor 4
 Route::get('/world', function () {
@@ -29,14 +37,14 @@ Route::get('/world', function () {
 });
 
 // Nomor 6
-Route::get('/', function () {
-    return 'Selamat Datang';
-});
+// Route::get('/', function () {
+//     return 'Selamat Datang';
+// });
 
 // Nomor 7
-Route::get('/about', function () {
-    return '2241760081 - AMANDA JASMYNE BERLIANA PUTRI';
-});
+// Route::get('/about', function () {
+//     return '2241760081 - AMANDA JASMYNE BERLIANA PUTRI';
+// });
 
 // ROUTE PARAMETERS
 // Nomor 8
@@ -52,9 +60,9 @@ Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
 
 
 // Nomor 13
-Route::get('/articles/{id}', function ($id) {
-    return 'Halaman Artikel dengan ID ' .$id;
-});
+// Route::get('/articles/{id}', function ($id) {
+//     return 'Halaman Artikel dengan ID ' .$id;
+// });
 
 // OPTIONAL PARAMETERS
 // Nomor 14
@@ -66,3 +74,25 @@ Route::get('/user/{name?}', function ($name=null) {
 Route::get('/user/{name?}', function ($name='John') {
     return 'Nama saya ' .$name;
 });
+
+// JOBSHEET 2 - PRAK 2
+
+// Nomor 4
+Route::get('/hello', [WelcomeController::class,'hello']);
+
+// Nomor 6
+// Route::get('/', [PageController::class, 'index']);
+// Route::get('/about', [PageController::class, 'about']);
+// Route::get('/articles/{id}', [PageController::class, 'articles']);
+
+// Nomor 7
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/about', [AboutController::class, 'about']);
+Route::get('/articles/{id}', [ArticleController::class, 'articles']);
+
+// Nomor 9
+Route::resource('photos', PhotoController::class);
+
+// Nomor 11
+Route::resource('photos', PhotoController::class) ->only(['index','show']);
+Route::resource('photos', PhotoController::class) ->except(['create','store', 'update', 'destroy']);
